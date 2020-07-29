@@ -1,6 +1,6 @@
 %UNEF
-%ENGENHARIA ELÉTRICA
-%INTELIGÊNCIA ARTIFICIAL
+%ENGENHARIA ELÃ‰TRICA
+%INTELIGÃŠNCIA ARTIFICIAL
 %% limpa dados
 clear; close all; imtool close all; clc;
 %% carrega arquivo gTruth
@@ -32,7 +32,7 @@ lgraph=yolov2Layers([224 224 3],numClasses,...
 resizedAnchors,baseNetwork,featureLayer);
 %% abrir deepnetworkdesign
 deepNetworkDesigner
-%% opções de treino
+%% opÃ§Ãµes de treino
  options = trainingOptions('adam', ...
         'InitialLearnRate',0.0001, ...
         'Verbose',true,'MiniBatchSize',8,'MaxEpochs',3,...
@@ -48,13 +48,13 @@ plot(info.TrainingLoss)
 grid on
 xlabel('Number of Iterations')
 ylabel('Training Loss for Each Iteration')
-%% opções de re-treino
+%% opÃ§Ãµes de re-treino
  options = trainingOptions('adam', ...
         'InitialLearnRate',0.000000000256, ...
         'Verbose',true,'MiniBatchSize',8,'MaxEpochs',3,...
         'Shuffle','every-epoch','VerboseFrequency',1, ...
         'LearnRateSchedule','piecewise','LearnRateDropFactor',0.2,'LearnRateDropPeriod',2);
-%% re-treinar detector(Após primeiro treino)
+%% re-treinar detector(ApÃ³s primeiro treino)
 [detectorYoloV2, info] = trainYOLOv2ObjectDetector(trainingData,detectorYoloV2,options);
 %% accuracy de re-treino
 figure
@@ -67,23 +67,23 @@ ylabel('Training Loss for Each Iteration')
     results = table('Size',[height(trainingData) 3],...
     'VariableTypes',{'cell','cell','cell'},...
     'VariableNames',{'Boxes','Scores', 'Labels'});
-%% aprimora performace
+%% ValidaÃ§Ã£o
 for k=1:height(trainingData)
 I=imread(trainingData.imageFilename{k});
-[bboxes,scores,labels]=detect(detectorYoloV2,I,'Threshold',0.2);
+[bboxes,scores,labels]=detect(detectorYoloV2,I,'Threshold',0.7);
 results.Boxes{k}=bboxes;
 results.Scores{k}=scores;
 results.Labels{k}=labels;
 end
 
-%% limite de detecção
-threshold =0.2;
+%% limite de detecÃ§Ã£o
+threshold =0.7;
 %% 
 [ap, recall, precision] = evaluateDetectionPrecision(results, trainingData(:,2:end),threshold);
 
 %% 
    [am,fppi,missRate] = evaluateDetectionMissRate(results, trainingData(:,2:end),threshold);
-%% grafico de precisão 
+%% grafico de precisÃ£o 
    subplot(1,2,1);
 plot(recall{1,1},precision{1,1},'g-','LineWidth',2, "DisplayName",'COM_MASCARA');
 hold on;
@@ -115,7 +115,7 @@ grid on
 
 %% 
 depVideoPlayer = vision.DeployableVideoPlayer;
-%% executa classificação com imagens
+%% executa classificaÃ§Ã£o com imagens
  
 for i = 1:height(trainingData)
     
