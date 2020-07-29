@@ -2,7 +2,7 @@
 Object detection code static and realtime in the MATLAB with based in the COVID.
 Detector de objeto estatico e em tempo real usando MATLAB baseado no COVID.
 
-Esse detector foi feito usando matlab, contem uma precisão de 70% em tempo real, foi feito utilizando conceitos e tecnicas de visão computacional e deeplearning.
+Esse detector foi feito usando MATLAB, contem uma precisão de 70% em tempo real, foi feito utilizando conceitos e tecnicas de visão computacional e deeplearning.
 
 As etapas que realizei nesse projeto foi: preparação do dataset, preprocessamento e tratamento das imagens, criação do algoritmo em etapas de carregamento das imagens, carregamento de caixas ancoras, treinamento e validação e teste estatico e tempo real.
 
